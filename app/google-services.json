@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "323730259710",
+    "project_id": "codiba-33d6f",
+    "storage_bucket": "codiba-33d6f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323730259710:android:d58cbb9c7beef87b582faf",
+        "android_client_info": {
+          "package_name": "com.example.codibaandroid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTHJYqXUmYms_Jry7pBxFmgghTJ1qJK2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
