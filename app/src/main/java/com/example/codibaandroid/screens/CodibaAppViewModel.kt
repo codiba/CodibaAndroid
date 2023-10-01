@@ -1,4 +1,4 @@
-package com.example.codibaandroid.activities
+package com.example.codibaandroid.screens
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

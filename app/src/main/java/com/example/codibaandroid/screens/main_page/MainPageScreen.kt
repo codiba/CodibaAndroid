@@ -1,4 +1,4 @@
-package com.example.codibaandroid.activities.main_page
+package com.example.codibaandroid.screens.main_page
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column

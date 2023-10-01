@@ -1,11 +1,9 @@
-package com.example.codibaandroid.activities.main_page
+package com.example.codibaandroid.screens.main_page
 
 import com.example.codibaandroid.MAIN_PAGE_SCREEN
 import com.example.codibaandroid.SIGN_IN_SCREEN
-import com.example.codibaandroid.SIGN_UP_SCREEN
-import com.example.codibaandroid.SPLASH_SCREEN
-import com.example.codibaandroid.activities.CodibaAppViewModel
 import com.example.codibaandroid.model.service.AccountService
+import com.example.codibaandroid.screens.CodibaAppViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.example.codibaandroid.activities.sign_in
+package com.example.codibaandroid.screens.sign_up
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -20,7 +20,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -40,13 +39,14 @@ import com.example.codibaandroid.ui.theme.Purple40
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-fun SignInScreen(
+fun SignUpScreen(
     openAndPopUp: (String, String) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: SignInViewModel = hiltViewModel()
+    viewModel: SignUpViewModel = hiltViewModel()
 ) {
     val email = viewModel.email.collectAsState()
     val password = viewModel.password.collectAsState()
+    val confirmPassword = viewModel.confirmPassword.collectAsState()
 
     Column(
         modifier = modifier
@@ -109,29 +109,42 @@ fun SignInScreen(
             visualTransformation = PasswordVisualTransformation()
         )
 
+        OutlinedTextField(
+            singleLine = true,
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(16.dp, 4.dp)
+                .border(
+                    BorderStroke(width = 2.dp, color = Purple40),
+                    shape = RoundedCornerShape(50)
+                ),
+            colors = TextFieldDefaults.textFieldColors(
+                containerColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            ),
+            value = confirmPassword.value,
+            onValueChange = { viewModel.updateConfirmPassword(it) },
+            placeholder = { Text(stringResource(R.string.confirm_password)) },
+            leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "Email") },
+            visualTransformation = PasswordVisualTransformation()
+        )
+
         Spacer(modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp))
 
         Button(
-            onClick = { viewModel.onSignInClick(openAndPopUp) },
+            onClick = { viewModel.onSignUpClick(openAndPopUp) },
             modifier = modifier
                 .fillMaxWidth()
                 .padding(16.dp, 0.dp)
         ) {
             Text(
-                text = stringResource(R.string.sign_in),
+                text = stringResource(R.string.sign_up),
                 fontSize = 16.sp,
                 modifier = modifier.padding(0.dp, 6.dp)
             )
-        }
-
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .padding(4.dp))
-
-        TextButton(onClick = { viewModel.onSignUpClick(openAndPopUp) }) {
-            Text(text = stringResource(R.string.sign_up_description), fontSize = 16.sp)
         }
     }
 }
@@ -140,6 +153,6 @@ fun SignInScreen(
 @Composable
 fun AuthPreview() {
     CodibaAndroidTheme {
-        SignInScreen({ _, _ -> })
+        SignUpScreen({ _, _ -> })
     }
 }

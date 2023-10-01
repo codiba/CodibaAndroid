@@ -1,12 +1,10 @@
-package com.example.codibaandroid.activities.sign_in
+package com.example.codibaandroid.screens.sign_in
 
-import android.util.Log
-import com.example.codibaandroid.MAIN_ACTIVITY
 import com.example.codibaandroid.MAIN_PAGE_SCREEN
 import com.example.codibaandroid.SIGN_IN_SCREEN
 import com.example.codibaandroid.SIGN_UP_SCREEN
-import com.example.codibaandroid.activities.CodibaAppViewModel
 import com.example.codibaandroid.model.service.AccountService
+import com.example.codibaandroid.screens.CodibaAppViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject

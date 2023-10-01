@@ -13,10 +13,10 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.codibaandroid.activities.main_page.MainPageScreen
-import com.example.codibaandroid.activities.sign_in.SignInScreen
-import com.example.codibaandroid.activities.sign_up.SignUpScreen
-import com.example.codibaandroid.activities.splash.SplashScreen
+import com.example.codibaandroid.screens.main_page.MainPageScreen
+import com.example.codibaandroid.screens.sign_in.SignInScreen
+import com.example.codibaandroid.screens.sign_up.SignUpScreen
+import com.example.codibaandroid.screens.splash.SplashScreen
 import com.example.codibaandroid.ui.theme.CodibaAndroidTheme
 
 @Composable
