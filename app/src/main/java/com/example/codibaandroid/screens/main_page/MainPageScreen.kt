@@ -31,17 +31,27 @@ import com.example.codibaandroid.ui.theme.CodibaAndroidTheme
 import com.example.codibaandroid.ui.theme.PurpleGrey40
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 fun MainPageScreen(
     openAndPopUp: (String, String) -> Unit,
-    modifier: Modifier = Modifier,
     viewModel: MainPageViewModel = hiltViewModel()
+) {
+    MainPageScreenContent(
+        onSignOutClick = { viewModel.onSignOutClick(openAndPopUp) },
+        onDeleteAccountClick = { viewModel.onDeleteAccountClick(openAndPopUp) }
+    )
+}
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+fun MainPageScreenContent(
+    modifier: Modifier = Modifier,
+    onSignOutClick: () -> Unit,
+    onDeleteAccountClick: () -> Unit
 ) {
     var showExitAppDialog by remember { mutableStateOf(false) }
     var showRemoveAccDialog by remember { mutableStateOf(false) }
 
-    Column(modifier = Modifier
+    Column(modifier = modifier
         .fillMaxWidth()
         .fillMaxHeight()) {
         TopAppBar(
@@ -76,7 +86,7 @@ fun MainPageScreen(
                 },
                 confirmButton = {
                     Button(onClick = {
-                        viewModel.onSignOutClick(openAndPopUp)
+                        onSignOutClick()
                         showExitAppDialog = false
                     }) {
                         Text(text = stringResource(R.string.sign_out))
@@ -97,7 +107,7 @@ fun MainPageScreen(
                 },
                 confirmButton = {
                     Button(onClick = {
-                        viewModel.onDeleteAccountClick(openAndPopUp)
+                        onDeleteAccountClick()
                         showRemoveAccDialog = false
                     }) {
                         Text(text = stringResource(R.string.delete_account))
@@ -114,6 +124,9 @@ fun MainPageScreen(
 @Composable
 fun MainPagePreview() {
     CodibaAndroidTheme {
-        MainPageScreen({ _, _ -> })
+        MainPageScreenContent(
+            onSignOutClick = {},
+            onDeleteAccountClick = {}
+        )
     }
 }

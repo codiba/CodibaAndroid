@@ -63,10 +63,10 @@ fun SignUpScreenContent(
     email: State<String>,
     password: State<String>,
     confirmPassword: State<String>,
-    onValueEmailChange: ((String) -> Unit)?,
-    onValuePasswordChange: ((String) -> Unit)?,
-    onValueConfirmPasswordChange: ((String) -> Unit)?,
-    onSignUpClick: (() -> Unit)?
+    onValueEmailChange: (String) -> Unit,
+    onValuePasswordChange: (String) -> Unit,
+    onValueConfirmPasswordChange: (String) -> Unit,
+    onSignUpClick: () -> Unit
 ) {
 
     Column(
@@ -85,9 +85,11 @@ fun SignUpScreenContent(
                 .padding(16.dp, 4.dp)
         )
 
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .padding(12.dp))
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(12.dp)
+        )
 
         OutlinedTextField(
             singleLine = true,
@@ -104,11 +106,7 @@ fun SignUpScreenContent(
                 unfocusedIndicatorColor = Color.Transparent
             ),
             value = email.value,
-            onValueChange = {
-                if (onValueEmailChange != null) {
-                    onValueEmailChange(it)
-                }
-            },
+            onValueChange = { onValueEmailChange(it) },
             placeholder = { Text(stringResource(R.string.email)) },
             leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "Email") }
         )
@@ -128,11 +126,7 @@ fun SignUpScreenContent(
                 unfocusedIndicatorColor = Color.Transparent
             ),
             value = password.value,
-            onValueChange = {
-                if (onValuePasswordChange != null) {
-                    onValuePasswordChange(it)
-                }
-            },
+            onValueChange = {onValuePasswordChange(it) },
             placeholder = { Text(stringResource(R.string.password)) },
             leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "Email") },
             visualTransformation = PasswordVisualTransformation()
@@ -153,26 +147,20 @@ fun SignUpScreenContent(
                 unfocusedIndicatorColor = Color.Transparent
             ),
             value = confirmPassword.value,
-            onValueChange = {
-                if (onValueConfirmPasswordChange != null) {
-                    onValueConfirmPasswordChange(it)
-                }
-            },
+            onValueChange = { onValueConfirmPasswordChange(it) },
             placeholder = { Text(stringResource(R.string.confirm_password)) },
             leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "Email") },
             visualTransformation = PasswordVisualTransformation()
         )
 
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .padding(12.dp))
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(12.dp)
+        )
 
         Button(
-            onClick = {
-                if (onSignUpClick != null) {
-                    onSignUpClick()
-                }
-            },
+            onClick = { onSignUpClick() },
             modifier = modifier
                 .fillMaxWidth()
                 .padding(16.dp, 0.dp)

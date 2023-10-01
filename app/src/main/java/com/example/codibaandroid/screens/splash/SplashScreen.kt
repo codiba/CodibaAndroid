@@ -34,7 +34,7 @@ fun SplashScreen(
 @Composable
 fun SplashScreenContent(
     modifier: Modifier = Modifier,
-    onAppStart: (() -> Unit)?
+    onAppStart: () -> Unit
 ) {
     Column(
         modifier =
@@ -51,9 +51,8 @@ fun SplashScreenContent(
 
     LaunchedEffect(true) {
         delay(SPLASH_TIMEOUT)
-        if (onAppStart != null) {
-            onAppStart()
-        }
+        onAppStart()
+        onAppStart()
     }
 }
 
