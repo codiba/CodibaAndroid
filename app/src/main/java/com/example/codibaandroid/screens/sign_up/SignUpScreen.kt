@@ -1,5 +1,6 @@
 package com.example.codibaandroid.screens.sign_up
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -22,7 +23,9 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,15 +41,33 @@ import com.example.codibaandroid.ui.theme.CodibaAndroidTheme
 import com.example.codibaandroid.ui.theme.Purple40
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
 fun SignUpScreen(
     openAndPopUp: (String, String) -> Unit,
-    modifier: Modifier = Modifier,
     viewModel: SignUpViewModel = hiltViewModel()
 ) {
-    val email = viewModel.email.collectAsState()
-    val password = viewModel.password.collectAsState()
-    val confirmPassword = viewModel.confirmPassword.collectAsState()
+    SignUpScreenContent(
+        email = viewModel.email.collectAsState(),
+        password = viewModel.password.collectAsState(),
+        confirmPassword = viewModel.confirmPassword.collectAsState(),
+        onValueEmailChange = { viewModel.updateEmail(it) },
+        onValuePasswordChange = { viewModel.updatePassword(it) },
+        onValueConfirmPasswordChange = { viewModel.updateConfirmPassword(it) },
+        onSignUpClick = { viewModel.onSignUpClick(openAndPopUp) }
+    )
+}
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+fun SignUpScreenContent(
+    modifier: Modifier = Modifier,
+    email: State<String>,
+    password: State<String>,
+    confirmPassword: State<String>,
+    onValueEmailChange: ((String) -> Unit)?,
+    onValuePasswordChange: ((String) -> Unit)?,
+    onValueConfirmPasswordChange: ((String) -> Unit)?,
+    onSignUpClick: (() -> Unit)?
+) {
 
     Column(
         modifier = modifier
@@ -83,7 +104,11 @@ fun SignUpScreen(
                 unfocusedIndicatorColor = Color.Transparent
             ),
             value = email.value,
-            onValueChange = { viewModel.updateEmail(it) },
+            onValueChange = {
+                if (onValueEmailChange != null) {
+                    onValueEmailChange(it)
+                }
+            },
             placeholder = { Text(stringResource(R.string.email)) },
             leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "Email") }
         )
@@ -103,7 +128,11 @@ fun SignUpScreen(
                 unfocusedIndicatorColor = Color.Transparent
             ),
             value = password.value,
-            onValueChange = { viewModel.updatePassword(it) },
+            onValueChange = {
+                if (onValuePasswordChange != null) {
+                    onValuePasswordChange(it)
+                }
+            },
             placeholder = { Text(stringResource(R.string.password)) },
             leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "Email") },
             visualTransformation = PasswordVisualTransformation()
@@ -124,7 +153,11 @@ fun SignUpScreen(
                 unfocusedIndicatorColor = Color.Transparent
             ),
             value = confirmPassword.value,
-            onValueChange = { viewModel.updateConfirmPassword(it) },
+            onValueChange = {
+                if (onValueConfirmPasswordChange != null) {
+                    onValueConfirmPasswordChange(it)
+                }
+            },
             placeholder = { Text(stringResource(R.string.confirm_password)) },
             leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "Email") },
             visualTransformation = PasswordVisualTransformation()
@@ -135,7 +168,11 @@ fun SignUpScreen(
             .padding(12.dp))
 
         Button(
-            onClick = { viewModel.onSignUpClick(openAndPopUp) },
+            onClick = {
+                if (onSignUpClick != null) {
+                    onSignUpClick()
+                }
+            },
             modifier = modifier
                 .fillMaxWidth()
                 .padding(16.dp, 0.dp)
@@ -149,10 +186,19 @@ fun SignUpScreen(
     }
 }
 
+@SuppressLint("UnrememberedMutableState")
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun AuthPreview() {
     CodibaAndroidTheme {
-        SignUpScreen({ _, _ -> })
+        SignUpScreenContent(
+            email = mutableStateOf(""),
+            password = mutableStateOf(""),
+            confirmPassword = mutableStateOf(""),
+            onValueEmailChange = {},
+            onValuePasswordChange = {},
+            onValueConfirmPasswordChange = {},
+            onSignUpClick = {}
+        )
     }
 }

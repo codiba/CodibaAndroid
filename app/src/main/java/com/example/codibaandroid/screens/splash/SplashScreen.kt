@@ -13,7 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.codibaandroid.ui.theme.CodibaAndroidTheme
 import kotlinx.coroutines.delay
 
 private const val SPLASH_TIMEOUT = 1000L
@@ -21,8 +23,18 @@ private const val SPLASH_TIMEOUT = 1000L
 @Composable
 fun SplashScreen(
     openAndPopUp: (String, String) -> Unit,
-    modifier: Modifier = Modifier,
     viewModel: SplashViewModel = hiltViewModel()
+) {
+
+    SplashScreenContent (
+        onAppStart = { viewModel.onAppStart(openAndPopUp) }
+    )
+}
+
+@Composable
+fun SplashScreenContent(
+    modifier: Modifier = Modifier,
+    onAppStart: (() -> Unit)?
 ) {
     Column(
         modifier =
@@ -39,6 +51,16 @@ fun SplashScreen(
 
     LaunchedEffect(true) {
         delay(SPLASH_TIMEOUT)
-        viewModel.onAppStart(openAndPopUp)
+        if (onAppStart != null) {
+            onAppStart()
+        }
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun SplashScreenPreview() {
+    CodibaAndroidTheme {
+        SplashScreenContent(onAppStart = {})
     }
 }
