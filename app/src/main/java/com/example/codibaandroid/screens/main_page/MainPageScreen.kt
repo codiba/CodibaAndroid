@@ -1,6 +1,5 @@
 package com.example.codibaandroid.screens.main_page
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
