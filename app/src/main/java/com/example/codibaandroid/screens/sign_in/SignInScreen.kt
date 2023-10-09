@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.codibaandroid.R
+import com.example.codibaandroid.ui.components.AppLogoImageView
 import com.example.codibaandroid.ui.theme.CodibaAndroidTheme
 import com.example.codibaandroid.ui.theme.Purple40
 
@@ -75,14 +76,7 @@ fun SignInScreenContent(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(
-            painter = painterResource(id = R.mipmap.auth_image),
-            contentDescription = "Auth image",
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(16.dp, 4.dp)
-        )
-
+        AppLogoImageView()
         Spacer(modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp))

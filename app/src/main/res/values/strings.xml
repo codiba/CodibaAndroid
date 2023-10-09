@@ -14,4 +14,7 @@
     <string name="delete_account_title">Hesabı sil?</string>
     <string name="delete_account_description">Hesabınızı silmek istediğinize emin misiniz? Bu işlem geri alınamaz.</string>
     <string name="cancel">İptal</string>
+    <string name="amount">Miktar</string>
+    <string name="price">Tutar</string>
+    <string name="sell">Sat</string>
 </resources>

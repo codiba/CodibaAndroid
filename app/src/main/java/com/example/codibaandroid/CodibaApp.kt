@@ -13,6 +13,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.codibaandroid.screens.add_item.AddItemViewScreen
 import com.example.codibaandroid.screens.main_page.MainPageScreen
 import com.example.codibaandroid.screens.sign_in.SignInScreen
 import com.example.codibaandroid.screens.sign_up.SignUpScreen
@@ -61,5 +62,9 @@ fun NavGraphBuilder.codibaGraph(appState: CodibaAppState) {
 
     composable(MAIN_PAGE_SCREEN) {
         MainPageScreen(openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) })
+    }
+
+    composable(ADD_ITEM_SCREEN){
+        AddItemViewScreen(openAndPopUp = {route, popUp -> appState.navigateAndPopUp(route, popUp)})
     }
 }

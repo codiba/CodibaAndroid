@@ -1,5 +1,6 @@
 package com.example.codibaandroid.screens.splash
 
+import com.example.codibaandroid.ADD_ITEM_SCREEN
 import com.example.codibaandroid.SIGN_IN_SCREEN
 import com.example.codibaandroid.SPLASH_SCREEN
 import com.example.codibaandroid.model.service.AccountService

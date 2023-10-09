@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -37,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.codibaandroid.R
+import com.example.codibaandroid.ui.components.AppLogoImageView
 import com.example.codibaandroid.ui.theme.CodibaAndroidTheme
 import com.example.codibaandroid.ui.theme.Purple40
 
@@ -77,13 +79,7 @@ fun SignUpScreenContent(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(
-            painter = painterResource(id = R.mipmap.auth_image),
-            contentDescription = "Auth image",
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(16.dp, 4.dp)
-        )
+        AppLogoImageView()
 
         Spacer(
             modifier = Modifier
